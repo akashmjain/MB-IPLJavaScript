@@ -1,0 +1,23 @@
+{
+  "name": "ipljavascript",
+  "version": "1.0.0",
+  "description": "IPL project using javascript.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/akashmjain_mb/IPLJavaScript.git"
+  },
+  "author": "akashmjain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/akashmjain_mb/IPLJavaScript/issues"
+  },
+  "homepage": "https://gitlab.com/akashmjain_mb/IPLJavaScript#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
