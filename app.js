@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 const Match = require('./Match');
 const Delivery = require('./Delivery');
 
@@ -55,7 +54,9 @@ solutions.findNumberOfMatchesWonPerTeamsOverAllYears = (matches) => {
         
         noOfMatchesWonPerTeam.set(key, value + 1);
     }
-    console.log(noOfMatchesWonPerTeam);
+    noOfMatchesWonPerTeam.forEach((value, key) => {
+        console.log(key +" : " + value);
+    })
 };
 
 solutions.findNumberOfMatchesPlayedPerYearForAllYears = (matches) => {
@@ -85,7 +86,9 @@ solutions.findYearWiseExtraRunConcededPerTeam = (deliveries, matches, year) => {
             teamToRunHashMap.set(key, value);
         }    
     }
-    console.log(teamToRunHashMap)
+    teamToRunHashMap.forEach((value, key) => {
+        console.log(key +" : " + value);
+    })
 };
 
 solutions.findYearWiseTopEconomicalBowlers = (deliveries, matches, year, top) => {
@@ -117,11 +120,25 @@ solutions.findYearWiseTopEconomicalBowlers = (deliveries, matches, year, top) =>
 };
 
 solutions.findTopMostCatchesInHistoryPlayers = (deliveries, top) => {
-
+    let catchersHashMap = new Map();
+    deliveries = deliveries.filter(value => 
+        value.getDismissalKind() == 'caught'
+    );
+    for(let i = 0; i < deliveries.length; i++) {
+        let key = deliveries[i].fielder;
+        key = key.replace(/(\r\n|\n|\r)/gm, "");
+        let value = catchersHashMap.get(key) === undefined ? 1 : catchersHashMap.get(key) + 1;
+        catchersHashMap.set(key, value);
+    }
+    catchersHashMap = [...catchersHashMap];
+    catchersHashMap = catchersHashMap.sort((a, b) => b[1] - a[1]);
+    for(let i = 0; i < top; i++) {
+        console.log(catchersHashMap[i]);   
+    }
 };
 
 const getData = {}
-getData.matches = (callback) => {  
+getData.matches = () => {  
     const matches = new Array(); 
     const filePath = path.join(__dirname, '/data/matches.csv');
     let csvBlob = fs.readFileSync(filePath, {encoding: 'utf-8'});
@@ -160,8 +177,8 @@ getData.deliveries = () => {
 const deliveries = getData.deliveries();
 const matches = getData.matches();
 
-// solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
-// solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
-// solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
-// solutions.findYearWiseTopEconomicalBowlers(deliveries, matches, '2015', 5);
+solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
+solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
+solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
+solutions.findYearWiseTopEconomicalBowlers(deliveries, matches, '2015', 5);
 solutions.findTopMostCatchesInHistoryPlayers(deliveries, 5);
