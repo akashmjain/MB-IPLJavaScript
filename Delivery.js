@@ -1,7 +1,7 @@
 class Delivery {
     
     getMatchId() {
-        return matchId;
+        return this.matchId;
     }
 
     setMatchId(matchId) {
@@ -9,7 +9,7 @@ class Delivery {
     }
 
     getInning() {
-        return inning;
+        return this.inning;
     }
 
     setInning(inning) {
@@ -17,7 +17,7 @@ class Delivery {
     }
 
     getBattingTeam() {
-        return battingTeam;
+        return this.battingTeam;
     }
 
     setBattingTeam(battingTeam) {
@@ -25,7 +25,7 @@ class Delivery {
     }
 
     getBowlingTeam() {
-        return bowlingTeam;
+        return this.bowlingTeam;
     }
 
     setBowlingTeam(bowlingTeam) {
@@ -33,7 +33,7 @@ class Delivery {
     }
 
     getOver() {
-        return over;
+        return this.over;
     }
 
     setOver(over) {
@@ -41,7 +41,7 @@ class Delivery {
     }
 
     getBall() {
-        return ball;
+        return this.ball;
     }
 
     setBall(ball) {
@@ -49,7 +49,7 @@ class Delivery {
     }
 
     getBatsman() {
-        return batsman;
+        return this.batsman;
     }
 
     setBatsman(batsman) {
@@ -57,7 +57,7 @@ class Delivery {
     }
 
     getNonStriker() {
-        return nonStriker;
+        return this.nonStriker;
     }
 
     setNonStriker(nonStriker) {
@@ -65,7 +65,7 @@ class Delivery {
     }
 
     getBowler() {
-        return bowler;
+        return this.bowler;
     }
 
     setBowler(bowler) {
@@ -73,7 +73,7 @@ class Delivery {
     }
 
     getIsSuperOver() {
-        return isSuperOver;
+        return this.isSuperOver;
     }
 
     setIsSuperOver(isSuperOver) {
@@ -81,7 +81,7 @@ class Delivery {
     }
 
     getWideRuns() {
-        return wideRuns;
+        return this.wideRuns;
     }
 
     setWideRuns(wideRuns) {
@@ -89,7 +89,7 @@ class Delivery {
     }
 
     getByeRuns() {
-        return byeRuns;
+        return this.byeRuns;
     }
 
     setByeRuns(byeRuns) {
@@ -97,7 +97,7 @@ class Delivery {
     }
 
     getLegbyeRuns() {
-        return legbyeRuns;
+        return this.legbyeRuns;
     }
 
     setLegbyeRuns( legbyeRuns) {
@@ -105,7 +105,7 @@ class Delivery {
     }
 
     getNoballRuns() {
-        return noballRuns;
+        return this.noballRuns;
     }
 
     setNoballRuns( noballRuns) {
@@ -113,7 +113,7 @@ class Delivery {
     }
 
     getPenaltyRuns() {
-        return penaltyRuns;
+        return this.penaltyRuns;
     }
 
     setPenaltyRuns( penaltyRuns) {
@@ -121,7 +121,7 @@ class Delivery {
     }
 
     getBatsmanRuns() {
-        return batsmanRuns;
+        return this.batsmanRuns;
     }
 
     setBatsmanRuns(batsmanRuns) {
@@ -129,7 +129,7 @@ class Delivery {
     }
 
     getExtraRuns() {
-        return extraRuns;
+        return this.extraRuns;
     }
 
     setExtraRuns(extraRuns) {
@@ -137,7 +137,7 @@ class Delivery {
     }
 
     getTotalRuns() {
-        return totalRuns;
+        return this.totalRuns;
     }
 
     setTotalRuns(totalRuns) {
@@ -145,7 +145,7 @@ class Delivery {
     }
 
     getPlayerDismissed() {
-        return playerDismissed;
+        return this.playerDismissed;
     }
 
     setPlayerDismissed(playerDismissed) {
@@ -153,7 +153,7 @@ class Delivery {
     }
 
     getDismissalKind() {
-        return dismissalKind;
+        return this.dismissalKind;
     }
 
     setDismissalKind(dismissalKind) {
@@ -161,7 +161,7 @@ class Delivery {
     }
 
     getFielder() {
-        return fielder;
+        return this.fielder;
     }
 
     setFielder(fielder) {
