@@ -92,30 +92,28 @@ solutions.findYearWiseExtraRunConcededPerTeam = (deliveries, matches, year) => {
 };
 
 solutions.findYearWiseTopEconomicalBowlers = (deliveries, matches, year, top) => {
-    let bowlerHashMap = new Map();
+    let bowlerMap = new Map();
     for(let i = 0; i < matches.length; i++) {
         if(matches[i].getSeason() != year ) continue;
         for(let j = 0; j < deliveries.length; j++) {
             if(matches[i].getId() != deliveries[j].getMatchId()) continue;
             let key = deliveries[j].getBowler();
             let run = parseInt(deliveries[j].getTotalRuns());
-            bowlerHashMap.set(key, 
-                bowlerHashMap.get(key) === undefined ? 
+            bowlerMap.set(key, 
+                bowlerMap.get(key) === undefined ? 
                 { run: run, balls: 1 } : 
-                { run: bowlerHashMap.get(key).run + run, balls: bowlerHashMap.get(key).balls + 1 }
+                { run: bowlerMap.get(key).run + run, balls: bowlerMap.get(key).balls + 1 }
             );
         }
     }
-    let topBowlers = new Map();
-    bowlerHashMap.forEach((value, key) => {
-        topBowlers.set(key, value.run / (value.balls / 6));
+    let economicRate = new Map();
+    bowlerMap.forEach((value, key) => {
+        economicRate.set(key, value.run / (value.balls / 6));
     });
-    topBowlers[Symbol.iterator] = function* (){
-        yield* [...this.entries()].sort((a,b) => a[1] - b[1]);
-    }
-    topBowlers = [...topBowlers];
-    for(let i = 0; i < top; i++) {
-        console.log(topBowlers[i]);
+    economicRate = [...economicRate];
+    economicRate =  economicRate.sort((a, b) => a[1] - b[1]);
+    for (let index = 0; index < top; index++) {
+        console.log(economicRate[index]);
     }
 };
 
@@ -174,11 +172,12 @@ getData.deliveries = () => {
     }
     return deliveries;
 }
+
 const deliveries = getData.deliveries();
 const matches = getData.matches();
 
-solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
-solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
-solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
+// solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
+// solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
+// solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
 solutions.findYearWiseTopEconomicalBowlers(deliveries, matches, '2015', 5);
-solutions.findTopMostCatchesInHistoryPlayers(deliveries, 5);
+// solutions.findTopMostCatchesInHistoryPlayers(deliveries, 5);
