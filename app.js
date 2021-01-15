@@ -51,7 +51,6 @@ solutions.findNumberOfMatchesWonPerTeamsOverAllYears = (matches) => {
         const key = matches[i].getWinner();
         if(key == 'winner' || key == '' || key == undefined) continue;
         const value = noOfMatchesWonPerTeam.get(key) === undefined ? 0 : noOfMatchesWonPerTeam.get(key);
-        
         noOfMatchesWonPerTeam.set(key, value + 1);
     }
     noOfMatchesWonPerTeam.forEach((value, key) => {
@@ -69,7 +68,7 @@ solutions.findNumberOfMatchesPlayedPerYearForAllYears = (matches) => {
     noOfMatchesPerYear.forEach((value, key) => {
         if(key === undefined); 
         else if(key === 'season');
-        else console.log(key+" : "+value)
+        else console.log(key+" : "+value);
     })
     
 };
@@ -107,9 +106,7 @@ solutions.findYearWiseTopEconomicalBowlers = (deliveries, matches, year, top) =>
         }
     }
     let economicRate = new Map();
-    bowlerMap.forEach((value, key) => {
-        economicRate.set(key, value.run / (value.balls / 6));
-    });
+    bowlerMap.forEach((value, key) => economicRate.set(key, value.run / (value.balls / 6)) );
     economicRate = [...economicRate];
     economicRate =  economicRate.sort((a, b) => a[1] - b[1]);
     for (let index = 0; index < top; index++) {
@@ -119,13 +116,11 @@ solutions.findYearWiseTopEconomicalBowlers = (deliveries, matches, year, top) =>
 
 solutions.findTopMostCatchesInHistoryPlayers = (deliveries, top) => {
     let catchersHashMap = new Map();
-    deliveries = deliveries.filter(value => 
-        value.getDismissalKind() == 'caught'
-    );
+    deliveries = deliveries.filter(value => value.getDismissalKind() == 'caught');
     for(let i = 0; i < deliveries.length; i++) {
         let key = deliveries[i].fielder;
-        key = key.replace(/(\r\n|\n|\r)/gm, "");
-        let value = catchersHashMap.get(key) === undefined ? 1 : catchersHashMap.get(key) + 1;
+        key = key.replace(/(\r\n|\n|\r)/gm, ""); // to get rid of /r which got into deliveries csv file at the time of parsing
+        let value = catchersHashMap.get(key) === undefined ? 1 : catchersHashMap.get(key) + 1; 
         catchersHashMap.set(key, value);
     }
     catchersHashMap = [...catchersHashMap];
@@ -151,6 +146,7 @@ getData.matches = () => {
     }
     return matches;
 }
+
 getData.deliveries = () => {
     const deliveries = new Array(); 
     const filePath = path.join(__dirname, '/data/deliveries.csv');
@@ -176,8 +172,8 @@ getData.deliveries = () => {
 const deliveries = getData.deliveries();
 const matches = getData.matches();
 
-// solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
-// solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
-// solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
+solutions.findNumberOfMatchesWonPerTeamsOverAllYears(matches);
+solutions.findNumberOfMatchesPlayedPerYearForAllYears(matches);
+solutions.findYearWiseExtraRunConcededPerTeam(deliveries, matches, '2016');
 solutions.findYearWiseTopEconomicalBowlers(deliveries, matches, '2015', 5);
-// solutions.findTopMostCatchesInHistoryPlayers(deliveries, 5);
+solutions.findTopMostCatchesInHistoryPlayers(deliveries, 5);
